@@ -1,0 +1,117 @@
+/* The sidebar menu */
+.sidenav {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 160px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #111; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 16px 8px 6px 12px;
+  text-decoration: none;
+  font-size: 30px;
+  color: #818181;
+  display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Style page content */
+.main {
+  margin-left: 140px; /* Same as the width of the sidebar */
+  font-size: 18px;
+  padding-bottom: 750px;
+  padding-left: 40px;
+  padding-right: 20px
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav {padding-bottom: 45px;}
+  
+  .sidenav a {font-size: 18px;}
+}
+
+.splitline {
+    
+    margin:20px 0px 20px -30px;
+    padding: 0 50px 0 10px;
+    background-color:#333;
+    width:100%; height:50px;
+    color:#FFF;
+    font-size:35px;
+    
+    line-height:50px;
+}
+
+table {
+    border-collapse: collapse;
+    font-family: Futura, Arial, sans-serif;
+}
+
+caption {
+    font-size: larger;
+    margin: 1em auto;
+}
+
+th,td {
+    padding: .65em;
+}
+
+th {
+    background: #555 nonerepeat scroll 0 0;
+    border: 1px solid #777;
+    color: #fff;
+}
+
+
+td {
+     border: 1px solid#777;
+     text-align:center;
+}
+
+table tr:hover {
+     background: #ccc;
+}
+
+table tr:first-child {
+     background: #3a3838b8;
+}
+
+.barcon {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.barcon button {
+    background-color: #e7e7e7;
+    color: black;
+    padding: 10px 10px;
+    text-align: center;
+
+    border-radius: 2px;
+    font-size: 16px;
+    transition-duration: 0.4s;
+}
+
+.barcon button:hover {
+  background-color: #e7e7e;
+  color: white;
+}
+
+.enable_level {
+    display: None;
+}
+

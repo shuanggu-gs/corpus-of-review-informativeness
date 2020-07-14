@@ -1,0 +1,221 @@
+<html>
+    <head>
+        <script lanague="javescript" type="text/javascript" src="frontend.js"></script>
+    </head>
+    <link rel="stylesheet" type="text/css" href="frontend.css">
+    <body>
+        <div id="main" name="main">
+            <!-- Side navigation -->
+            <div class="sidenav">
+              <a href="#about">About</a>
+              <a href="#corpus">Corpus</a>
+              <a href="#annotation">Annotation</a>
+              <a href="#summary">Summary</a>
+            </div>
+
+            <!-- Page content -->
+            <div class="main">
+                <div id="head" name="head" style="background-color:#333;">
+                    <img src="imgs/corpus.png" alt="corpus image" width="50%" height="100%">
+                </div>
+                <div id="context">
+                    <div id="about" class="splitline">About</div>&nbsp
+                    
+                        <font size="5">Informativeness Review Corpus</b></font>&nbsp
+                        <hr></hr>&nbsp
+                        This corpus will focus on customer reviews from <a href="https://www.trustpilot.com/?_bt=393407989870&_bk=trustpilot&_bm=e&_bn=g&_bk=trustpilot&_bt=393407989870&_bm=e&_bn=g&_bg=54796667950&utm_matchtype=e&sfdc=701b0000000JFMH&utm_source=google&utm_medium=cpc&utm_term=trustpilot&utm_campaign=adwords_brand-all-en_requestdemo_us_0415&utm_content=US&hsa_grp=54796667950&hsa_mt=e&hsa_ver=3&hsa_net=adwords&hsa_ad=393407989870&hsa_acc=6586006720&hsa_kw=trustpilot&hsa_tgt=kwd-296888842959&hsa_src=g&hsa_cam=1032602115&gclid=Cj0KCQjw09HzBRDrARIsAG60GP8c8dRlvNLwOXLc6pZF6pEkB_8lMvJAHJeqv_O5IBp335OyqijoD_YaAnz3EALw_wcB">Trustpilot</a>
+                        website and it is annotated based on informativeness of the review. <br><br>&nbsp
+                        
+                        Trustpilot provides a platform which allows customers to leave reviews for companies products or their services. <br>&nbsp
+                        We have scrapped approximately ~20,000 reviews from this website. The whole corpus can be downloaded <a href="https://drive.google.com/file/d/13DA0dT-ZmIfsTVPS6r2GJ9GsUuT5qct0/view" download>here</a> in JSON format. <br>&nbsp 
+                        Below is an example of one entry.
+                        <br><br>&nbsp
+                        <!-- <img src="review_example.png" alt="corpus review" width="250" height="130"><br> &nbsp <br><br>&nbsp -->
+
+                        <font size="3">{&nbsp&nbsp
+                            "review_id": "5e53f3613c93ae0bc4090fd8",<br>&nbsp&nbsp
+                            "company": "Boomerang Pet ID Tags",<br>&nbsp&nbsp
+                            "category": "Animals & Pets",<br>&nbsp&nbsp
+                            "rating": 5,<br>&nbsp&nbsp
+                            "consumer_id": "5bc504524de5666d345f102d",<br>&nbsp&nbsp
+                            "consumer_name": "Terri Bosman",<br>&nbsp&nbsp
+                            "consumer_review": "These are the best tags!!  I only order from Boomerang. :)"<br>&nbsp
+                        }</font>
+                        <br><br>&nbsp
+                        We have annotated 500 reviews to see whether or not reviews in our corpus are informative. <br>&nbsp
+
+                        The total number of reviews in our corpus is 19,968 including 1,134,966 words. Below shows the number of reviews coming from each category.
+                        
+                        <br>
+                        <img src="imgs/category.png" alt="corpus stat" width="1100" height="730">
+                        <br>
+                        <br>&nbsp
+                        The data has been annotated using <a href="https://www.mturk.com/">Mechanical Turk</a><br>&nbsp
+
+                        The scale of informativeness ranges from "Not informative" , "Less informative", "Informative", "Very informative".<br>&nbsp
+                        For more information check the Annotation tab. Annotated corpus can be downloaded <a href="https://drive.google.com/file/d/1Kimo_yZQT3L0z8LqgDWsoyydD6tXK8Rn/view?usp=sharing" download>here</a>
+                        
+                        
+                        <br>
+                        <b></b>
+                        <br>
+                        <br>
+                        
+
+                    <div id="corpus" class="splitline">Corpus</div>
+                        <form action="/#corpus" id="form">
+
+                            <font size="5"><b>Select wether you want the anootated data or the meta data generated.</b></font><br><br>
+                            <input type="radio" id="annotated" name="annotated" value="True" onclick="enable_level();">
+                            <label for="annotated">Load annotated data &nbsp</label>
+                            <input type="radio" id="notannotated" name="annotated" value="False" onclick="disable_level();" checked >
+                            <label for="notannotated">Load Metadata &nbsp</label>
+
+                            <br>
+                            <br>
+                            <hr></hr>
+                            <br>
+                            <b>Search for the word in the box below to get all the reviews in the corpus with the word in them.</b><br><br>
+                            <input type="text" id="search_word" name="search_word" style="height:25px;width:140px;font-size:12px;border-radius: 12px"> Search by the word &nbsp<br><br>
+                            <br>
+                            <b>Search the company name in the box below to get all the reviews in the corpus with the word in them.</b><br><br>
+                            <input type="text" id = "search_company" name="search_company"style="height:25px;width:140px;font-size:12px;border-radius: 12px"> Search by the company &nbsp
+                            <br>
+                            <br>
+                            <hr></hr>
+                            <br>
+                            <b>Customize the cells bellow to generate filtered reviews</b><br><br>
+                            Choose for reviews is the category:
+                            <select id="category" name="category" style="height:25px;width:90px;font-size:12px;border-radius: 12px">
+                                <option value="None">Any</option>
+                                <option value="Animals & Pets">Animals & Pets</option>
+                                <option value="Beauty & Well-being">Beauty & Well-being</option>
+                                <option value="Business Services">Business Services</option>
+                                <option value="Construction & Manufacturing">Construction & Manufacturing</option>
+                                <option value="Education & Training">Education & Training</option>
+                                <option value="Electronics & Technology">Electronics & Technology</option>
+                                <option value="Events & Entertainment">Events & Entertainment</option>
+                                <option value="Food, Beverages & Tobacco">Food, Beverages & Tobacco</option>
+                                <option value="Health & Medica">Health & Medica</option>
+                                <option value="Hobbies & Crafts">Hobbies & Crafts</option>
+                                <option value="Home & Garden">Home & Garden</option>
+                                <option value="Home Services">Home Services</option>
+                                <option value="Legal Services & Government">Legal Services & Government</option>
+                                <option value="Media & Publishing">Media & Publishing</option>
+                                <option value="Money & Insurance">Money & Insurance</option>
+                                <option value="Public & Local Services">Public & Local Services</option>
+                                <option value="Restaurants & Bars">Restaurants & Bars</option>
+                                <option value="Shopping & Fashion">Shopping & Fashion</option>
+                                <option value="Sports">Sports</option>
+                                <option value="Travel & Vacation">Travel & Vacation</option>
+                                <option value="Utilities">Utilities</option>
+                                <option value="Vehicles & Transportation">Vehicles & Transportation</option>
+                            </select>
+                            <br>
+                            <br>
+                            Choose rating of the reviews
+                            <select id="rating" name="rating"style="height:25px;width:90px;font-size:12px;border-radius: 12px">
+                                <option value="None">Any</option>
+                                <option value="1">1 star</option>
+                                <option value="2">2 star</option>
+                                <option value="3">3 star</option>
+                                <option value="4">4 star</option>
+                                <option value="5">5 star</option>
+                            </select>
+                            <br>
+                            <br>
+                            <div class="enable_level" id="enable_level">
+                            Choose the level of informativeness:
+                            <select id="level" name="level" style="height:25px;width:90px;font-size:12px;border-radius: 12px">
+                                <option value="None">Any</option>
+                                <option value="very informative">very informative</option>
+                                <option value="informative">informative</option>
+                                <option value="less informative">less informative</option>
+                                <option value="not informative">Not informative</option>
+                            </select>
+                            <br>
+                            <br>
+                            </div>
+
+                            <button type="button" onclick="sumbit_form();"style="height:30px;width:90px;font-size:15px;border-radius: 12px">Search</button><br>
+
+                        </form>
+                        <div class="maintext" id="maintext"></div>
+                        <br>
+                        <div id="barcon" class= "barcon" ></div>
+                    </div>
+                    <div>
+                        <div id="annotation"  class="splitline">Annotation</div>
+                        <div id="annotate_data" >
+
+                            <font size="5"><b>Rules For Annotation:</b></font>
+                         <br>
+                         <br>
+                         <li>Not Informative review will not contain much information about the company's product or service. It is very subjective (purely opinion based). More dictation errors are found in the review</li>
+                         <br>
+                         <li>Less Informative review will only mention one or two aspects of company's service or product. Review will be a combination of subjective and objective comments. There is no reasoning behind the comments.</li>
+                         <br>
+                         <li>Informative review will contain enough information about company's product or service. Review will talk about few aspects about the company. It will contain reasoning behind the comments.</li>
+                         <br>
+                         <li>Very Informative review will contain comprehensive information about company's product or service. Review will talk about more aspects about the company. It will contain reasoning behind the comments. The comments give more background(relevant) and information about the experience of the user.</li>
+                         <br>
+                         <b>Few notes to consider:</b>
+                         <br>
+                         The companies category has been provided for each review to give context of what the review is about.
+                         Long review does not mean more informative review, and the comments should be relevant and useful.
+                         To distinguish between "informative" and "very informative" it's useful to think whether that comment gives you all you need to know about the product or the service.
+                        <br>
+                        <br>
+                        <hr> </hr>
+                        <br>
+                        <font size="5"><b>Future Improvements:</b></font>
+                        <br>
+                        <br>
+                        <li>First, the annotation rules must be set in a more strict and clear manner. Rules should allow annotator to pick annotation based on more evident points. 
+                            <ol>Example: "informative review" will contain rich content and it will talk about 2 to 3 aspects of the company's product or service. It will contain reasoning behind the comments and it will not be only based on emotions and subjectivity.</ol>
+                        </li>
+                        <li>Second aspect that could be improved is the scale of the informativeness. 
+                            In this corpus the reviews were annotated from range of "Not Informative", "Less informative", "Informative", "Very Informative".
+                            Distinguishing the boundary between the two categories of "Not Informative" and "Less informative" could be challenging. 
+                            Combining the two scales into one could result in less disambiguation</ol>
+                            <ol>New scale suggestion: "Not/less informative", "Informative", "Very Informative"</ol>
+                        </li>
+                        </div>
+                    </div>
+                    <div>
+                        <div id="summary"  class="splitline">Summary</div>
+                        <div id="summary_graph" >
+                            <form action="/#summary" id="form_graph">&nbsp
+                            <font size="5"><b>Here we can take look at some metadata retrevied from the corpus.</b></font>&nbsp
+                            <br><br>&nbsp
+                            Choose the level of informativeness:
+                            <select id="summary_level" name="summary_level" style="height:25px;width:130px;font-size:12px;border-radius: 12px">
+                                <option value="all">Any</option>
+                                <option value="very_informative">very informative</option>
+                                <option value="informative">informative</option>
+                                <option value="less_informative">less informative</option>
+                                <option value="not_informative">Not informative</option>
+                            </select>
+                            <br>
+                            <br>&nbsp
+                            
+                            Create the graph for word cloud of the level of annotation chosen above.<br><br>&nbsp
+                            <button type="button" onclick="sumbit_form_graph();"style="height:30px;width:90px;font-size:15px;border-radius: 12px">Create</button>
+                            </form>
+                            <div id="maingraph">
+                                <img src="./imgs/wordcloud.png">
+                                <br>
+                                
+                            </div>
+                            <hr></hr>
+
+                                <br>&nbsp
+                                Count of Words in each level of annotation is shown bellow.<br><br>
+                                <img src="./imgs/word_count.png" width="950" height="630">
+                        </div>
+                    </div>
+              </div>
+            </div>
+        </div>
+    </body>
+</html>
